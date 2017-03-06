@@ -29,30 +29,29 @@ artifacts {
     archives sourcesJar
 }
 
-// Bintray
-Properties properties = new Properties()
-properties.load(project.rootProject.file('local.properties').newDataInputStream())
-
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
+    user = bintrayUser
+    key = bintrayPassword
+    override = true
 
     configurations = ['archives']
     pkg {
-        repo = bintrayRepo
-        name = bintrayName
+        userOrg = 'dialog'
+        repo = 'android-sdk'
+        name = artifact
         desc = libraryDescription
-        websiteUrl = siteUrl
+        websiteUrl = 'https://dlg.im'
         vcsUrl = gitUrl
-        licenses = allLicenses
+        licenses = ["Dialog"]
         publish = true
         publicDownloadNumbers = true
         version {
             desc = libraryDescription
             gpg {
                 sign = true //Determines whether to GPG sign the files. The default is false
-                passphrase = properties.getProperty("bintray.gpg.password")
-                //Optional. The passphrase for GPG signing'
+                if (hasProperty('bintrayGpgPassword')) {
+                    bintray.pkg.version.gpg.passphrase = bintrayGpgPassword
+                }
             }
         }
     }

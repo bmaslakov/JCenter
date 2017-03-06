@@ -1,6 +1,8 @@
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
-group = publishedGroupId                               // Maven Group ID for the artifact
+group = 'im.dlg'                                       // Maven Group ID for the artifact
 
 install {
     repositories.mavenInstaller {
@@ -8,33 +10,32 @@ install {
         pom {
             project {
                 packaging 'aar'
-                groupId publishedGroupId
+                groupId 'im.dlg'
                 artifactId artifact
 
                 // Add your description here
-                name libraryName
+                name 'Dialog'
                 description libraryDescription
-                url siteUrl
+                url 'https://dlg.im'
 
                 // Set your license
                 licenses {
                     license {
-                        name licenseName
-                        url licenseUrl
+                        name 'Dialog'
+                        url 'https://dlg.im'
                     }
                 }
                 developers {
                     developer {
-                        id developerId
-                        name developerName
-                        email developerEmail
+                        id 'dialog'
+                        name 'Dialog LLC'
+                        email 'info@dlg.im'
                     }
                 }
                 scm {
                     connection gitUrl
                     developerConnection gitUrl
-                    url siteUrl
-
+                    url 'https://dlg.im'
                 }
             }
         }
