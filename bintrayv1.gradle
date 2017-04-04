@@ -4,6 +4,7 @@ version = libraryVersion
 
 if (project.hasProperty("android")) { // Android libraries
     task sourcesJar(type: Jar) {
+        excludes = ['**/*.kt'] // Exclude all kotlin files from javadoc file.
         classifier = 'sources'
         from android.sourceSets.main.java.srcDirs
     }
