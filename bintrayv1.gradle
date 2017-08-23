@@ -32,7 +32,7 @@ artifacts {
 bintray {
     user = bintrayUser
     key = bintrayPassword
-    override = true
+    override = false
 
     configurations = ['archives']
     pkg {
